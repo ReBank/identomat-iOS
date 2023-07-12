@@ -1,0 +1,11 @@
+framework module identomat {
+  umbrella header "identomat.h"
+
+  export *
+  module * { export * }
+}
+
+module identomat.Swift {
+  header "identomat-Swift.h"
+  requires objc
+}

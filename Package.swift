@@ -1,31 +1,26 @@
-// swift-tools-version:5.3
+// swift-tools-version: 5.8
+// The swift-tools-version declares the minimum version of Swift required to build this package.
+
 import PackageDescription
 
 let package = Package(
-    name: "identomat",
-    platforms: [
-        .iOS(.v12)
-    ],
+    name: "identomat-iOS",
+    defaultLocalization: "ka",
     products: [
+        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "identomat",
-            targets: ["identomat"]
-        )
-    ],
-    dependencies: [
-        .package(name: "identomat-ios", url: "https://github.com/ReBank/identomat-iOS.git", from: "1.1.54"),
-        .package(url: "https://example.com/WebRTC-lib.git", from: "1.0.0")
+            name: "identomat-iOS",
+            targets: ["identomat-iOS"]),
     ],
     targets: [
+        // Targets are the basic building blocks of a package, defining a module or a test suite.
+        // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "identomat",
-            dependencies: ["identomat-ios"]
+            name: "identomat-iOS",
+            path: "identomat.xcframework"
         ),
-        .binaryTarget(
-            name: "identomat-ios",
-            url: "https://gitlab.com/identomat-public/identomat-ios-framework-public.git",
-            checksum: "add-checksum-here"
-        )
-    ],
-    swiftLanguageVersions: [.v5]
+        .testTarget(
+            name: "identomat-iOSTests"            
+        ),
+    ]
 )
